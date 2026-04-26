@@ -14,8 +14,8 @@ export default function Footer() {
           <h3>Resources</h3>
           <ul>
             <li><a href="https://codeforces.com" target="_blank" rel="noopener noreferrer">Codeforces</a></li>
-            <li><a href="https://codeforces.com/api/help" target="_blank" rel="noopener noreferrer">API Docs</a></li>
-            <li><a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://codeforces.com/apiHelp" target="_blank" rel="noopener noreferrer">API Docs</a></li>
+            <li><a href="https://github.com/shivamcu/cf-tracker" target="_blank" rel="noopener noreferrer">GitHub</a></li>
           </ul>
         </div>
         <div className={styles.section}>

@@ -1,7 +1,7 @@
 .container {
   padding: 40px;
   margin: 0 auto;
-  background: #ffffff;
+  background: transparent;
   min-height: 70vh;
   width: 100%;
 }
@@ -9,7 +9,7 @@
 .container h2 {
   font-size: 32px;
   font-weight: 800;
-  color: #1a1a1a;
+  color: var(--text-color);
   margin: 0 0 8px 0;
 }
 
@@ -24,16 +24,16 @@
   gap: 12px;
   margin: 20px 0 32px 0;
   padding: 20px;
-  background: #f8f9fa;
+  background: var(--card-bg);
   border-radius: 8px;
 }
 
 .select {
   padding: 10px 14px;
   border-radius: 8px;
-  border: 1px solid #e0e0e0;
-  background: white;
-  color: #1a1a1a;
+  border: 1px solid var(--border-color);
+  background: var(--alt-bg);
+  color: var(--text-color);
   font-size: 0.95rem;
   font-family: inherit;
   flex: 1;
@@ -84,7 +84,7 @@
 .title {
   font-size: 24px;
   font-weight: 800;
-  color: #1a1a1a;
+  color: var(--text-color);
   margin: 0 0 8px 0;
   text-transform: capitalize;
 }
@@ -106,8 +106,8 @@
 }
 
 .problemCard {
-  background: #f8f9fa;
-  border: 2px solid #e0e0e0;
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
   border-radius: 12px;
   padding: 16px;
   transition: all 0.3s;
@@ -121,7 +121,7 @@
   border-color: #667eea;
   box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
   transform: translateY(-4px);
-  background: white;
+  background: var(--alt-bg);
 }
 
 .stepNumber {
@@ -138,7 +138,7 @@
 }
 
 .problemTitle {
-  color: #1a1a1a;
+  color: var(--text-color);
   text-decoration: none;
   font-weight: 600;
   font-size: 14px;

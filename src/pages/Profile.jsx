@@ -2,6 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useAuth } from '../context/AuthContext'
 import styles from '../styles/Profile.module.css'
+import ShareableProfileCard from '../components/ShareableProfileCard'
 
 export default function Profile() {
   const { user, token, login } = useAuth()
@@ -25,16 +26,26 @@ export default function Profile() {
 
   return (
     <main className={styles.container}>
-      <h2>Profile</h2>
-      <p className={styles.email}>{user?.email}</p>
-      <form onSubmit={handleSave} className={styles.form}>
-        <input className={styles.input} type="text"
-          placeholder="Your Codeforces handle"
-          value={cfHandle}
-          onChange={e => setCfHandle(e.target.value)} />
-        <button className={styles.button} type="submit">Save</button>
-        {saved && <span className={styles.saved}>Saved!</span>}
-      </form>
+      <h2>Profile Settings</h2>
+      <div className={styles.content}>
+        <div style={{ flex: '1', minWidth: '300px' }}>
+          <p className={styles.email}>{user?.email}</p>
+          <form onSubmit={handleSave} className={styles.form}>
+            <input className={styles.input} type="text"
+              placeholder="Your Codeforces handle"
+              value={cfHandle}
+              onChange={e => setCfHandle(e.target.value)} />
+            <button className={styles.button} type="submit">Save</button>
+            {saved && <span className={styles.saved}>Saved!</span>}
+          </form>
+        </div>
+
+        {user?.cfHandle && (
+          <div style={{ flex: '1', minWidth: '400px', display: 'flex', justifyContent: 'center' }}>
+            <ShareableProfileCard handle={user.cfHandle} />
+          </div>
+        )}
+      </div>
     </main>
   )
 }

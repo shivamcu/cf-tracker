@@ -1,9 +1,16 @@
 .container {
   padding: 40px;
   margin: 0 auto;
-  background: #ffffff;
+  background: transparent;
   min-height: 70vh;
   width: 100%;
+}
+
+.content {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 24px;
 }
 
 .email { color: #999; margin: 8px 0 24px; }
@@ -13,9 +20,9 @@
 .input {
   padding: 10px 14px;
   border-radius: 8px;
-  border: 1px solid #e0e0e0;
-  background: #f8f9fa;
-  color: #1a1a1a;
+  border: 1px solid var(--border-color);
+  background: var(--alt-bg);
+  color: var(--text-color);
   font-size: 0.95rem;
   outline: none;
   transition: border-color 0.3s;

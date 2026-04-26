@@ -4,12 +4,12 @@
   align-items: center;
   justify-content: center;
   padding: 40px 20px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: transparent;
 }
 
 .content {
   text-align: center;
-  background: white;
+  background: var(--card-bg);
   padding: 60px 40px;
   border-radius: 16px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
@@ -30,14 +30,14 @@
 .title {
   font-size: 32px;
   font-weight: 800;
-  color: #1a1a1a;
+  color: var(--text-color);
   margin: 16px 0;
   letter-spacing: -0.5px;
 }
 
 .description {
   font-size: 16px;
-  color: #666;
+  color: var(--text-muted);
   line-height: 1.6;
   margin: 24px 0;
 }
@@ -50,7 +50,7 @@
 .suggestions h3 {
   font-size: 16px;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--text-color);
   margin: 0 0 12px 0;
   text-transform: uppercase;
   letter-spacing: 0.5px;

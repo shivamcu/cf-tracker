@@ -5,6 +5,22 @@ const router = express.Router()
 
 const CF_BASE = 'https://codeforces.com/api'
 
+router.get('/avatar', async (req, res) => {
+  try {
+    const { url } = req.query
+    if (!url) return res.status(400).send('No URL provided')
+    const response = await axios.get(decodeURIComponent(url), { 
+      responseType: 'arraybuffer' 
+    })
+    const contentType = response.headers['content-type']
+    res.set('Content-Type', contentType)
+    res.set('Cache-Control', 'public, max-age=86400')
+    res.send(response.data)
+  } catch (err) {
+    res.status(404).send('Image not found')
+  }
+})
+
 // GET /api/cf/user/:handle/problems-by-tag/:tag — get problems solved by specific tag
 // MUST come before /user/:handle to match properly
 router.get('/user/:handle/problems-by-tag/:tag', async (req, res, next) => {
@@ -226,6 +242,8 @@ router.get('/user/:handle', async (req, res) => {
         maxRating: userInfo.maxRating || 0,
         rank:      userInfo.rank      || 'unrated',
         avatar:    userInfo.titlePhoto,
+        memberSince: userInfo.registrationTimeSeconds ? new Date(userInfo.registrationTimeSeconds * 1000).getFullYear() : null,
+        contribution: userInfo.contribution || 0,
       },
       totalSolved: solved.size,
       tagCount,

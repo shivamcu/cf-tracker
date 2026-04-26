@@ -1,14 +1,39 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+:root {
+  --bg-color: #ffffff;
+  --text-color: #1a1a1a;
+  --text-muted: #666666;
+  --card-bg: #ffffff;
+  --alt-bg: #f8f9fa;
+  --border-color: #e0e0e0;
+  --scrollbar-track-bg: #f0f0f0;
+  --scrollbar-thumb-bg: #667eea;
+  --scrollbar-thumb-hover-bg: #764ba2;
+}
+
+:root.dark {
+  --bg-color: #1a202c;
+  --text-color: #e2e8f0;
+  --text-muted: #a0aec0;
+  --card-bg: #2d3748;
+  --alt-bg: #171923;
+  --border-color: #4a5568;
+  --scrollbar-track-bg: #2d3748;
+  --scrollbar-thumb-bg: #4a5568;
+  --scrollbar-thumb-hover-bg: #718096;
+}
+
 html, body, #root {
-  height: 100%;
+  min-height: 100vh;
   width: 100%;
 }
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
-  background: #ffffff;
-  color: #1a1a1a;
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   font-size: 14px;
   line-height: 1.6;
 }
@@ -31,14 +56,52 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f0f0f0;
+  background: var(--scrollbar-track-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #667eea;
+  background: var(--scrollbar-thumb-bg);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #764ba2;
+  background: var(--scrollbar-thumb-hover-bg);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 56px;
+  height: 28px;
+  background-color: #e2e8f0;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+:root.dark .theme-toggle {
+  background-color: #1e1e2e;
+}
+
+.theme-toggle .thumb {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  background-color: #ffffff;
+  border-radius: 999px;
+  transition: transform 0.3s ease;
+  transform: translateX(3px);
+}
+
+:root.dark .theme-toggle .thumb {
+  transform: translateX(31px);
 }
