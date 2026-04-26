@@ -8,6 +8,9 @@ CF Tracker helps competitive programmers monitor their progress on Codeforces by
 - Displaying solved problems, statistics, and rankings
 - Visualizing problem distribution by rating and topic
 - Providing learning roadmaps to improve specific skills
+- Tracking daily problem-solving activity
+- Generating shareable profile stat cards
+- Supporting Dark and Light themes
 - Bookmarking problems for later practice
 - Filtering problems by rating, topic, and difficulty
 
@@ -175,10 +178,13 @@ cf-tracker/
 ✅ **User Authentication** - Secure registration and login with JWT
 ✅ **Profile Management** - Link Codeforces account and track progress
 ✅ **Dashboard Analytics** - Visualize problems solved by rating and topic
+✅ **Daily Activity Tracking** - Filter and view problems solved on specific dates
+✅ **Shareable Profile Cards** - Generate and download a beautiful summary card of your Codeforces stats
 ✅ **Problem Browser** - Filter and search problems by tags and difficulty
 ✅ **Learning Roadmap** - AI-generated learning paths based on problem topics
 ✅ **Bookmarks** - Save problems for later practice
 ✅ **Public Dashboard** - View any user's profile without authentication
+✅ **Dark Mode** - Seamless iOS-style toggle between light and dark themes
 ✅ **Error Handling** - Centralized error middleware with consistent responses
 ✅ **Responsive Design** - Works on desktop, tablet, and mobile devices
 

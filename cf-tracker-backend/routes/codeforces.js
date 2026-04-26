@@ -44,7 +44,6 @@ router.get('/user/:handle/problems-by-tag/:tag', async (req, res, next) => {
       }
     }
 
-    // Filter by tag
     const filtered = Array.from(solved.values())
       .filter(p => p.tags && p.tags.includes(tag))
       .map(problem => ({
@@ -90,7 +89,6 @@ router.get('/user/:handle/problems-by-rating/:rating', async (req, res, next) =>
       }
     }
 
-    // Filter by rating
     const filtered = Array.from(solved.values())
       .filter(p => p.rating && String(p.rating) === String(rating))
       .map(problem => ({
@@ -137,7 +135,6 @@ router.get('/roadmap', async (req, res, next) => {
     const response = await axios.get(`${CF_BASE}/problemset.problems`)
     let allProblems = response.data.result.problems || []
 
-    // If handle provided, get user's solved problems and exclude them
     let solvedProblems = new Set()
     if (handle) {
       try {
@@ -156,7 +153,6 @@ router.get('/roadmap', async (req, res, next) => {
       }
     }
 
-    // Filter by topic tag and exclude solved problems
     const filtered = allProblems
       .filter(p => p.tags && p.tags.includes(topic.toLowerCase()))
       .filter(p => !solvedProblems.has(`${p.contestId}-${p.index}`))
@@ -168,7 +164,6 @@ router.get('/roadmap', async (req, res, next) => {
         tags: problem.tags || [],
         url: `https://codeforces.com/problemset/problem/${problem.contestId}/${problem.index}`
       }))
-      // Sort by difficulty (rating) for progression learning
       .sort((a, b) => a.rating - b.rating)
 
     res.json({
@@ -199,7 +194,6 @@ router.get('/user/:handle', async (req, res) => {
     const submissions = statusRes.data.result
     const userInfo    = infoRes.data.result[0]
 
-    // Only count accepted, unique problems
     const solved = new Map()
     for (const sub of submissions) {
       if (sub.verdict === 'OK') {
@@ -208,7 +202,6 @@ router.get('/user/:handle', async (req, res) => {
       }
     }
 
-    // Count solves per tag
     const tagCount = {}
     for (const problem of solved.values()) {
       for (const tag of problem.tags) {
@@ -216,7 +209,6 @@ router.get('/user/:handle', async (req, res) => {
       }
     }
 
-    // Count solves per rating bucket
     const ratingCount = {}
     for (const problem of solved.values()) {
       if (problem.rating) {
@@ -225,7 +217,6 @@ router.get('/user/:handle', async (req, res) => {
       }
     }
 
-    // Convert solved map to array with problem details
     const solvedProblems = Array.from(solved.values()).map(problem => ({
       contestId: problem.contestId,
       index: problem.index,

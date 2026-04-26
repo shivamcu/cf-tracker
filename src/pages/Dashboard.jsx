@@ -53,7 +53,6 @@ export default function Dashboard() {
     if (handle) fetchSubmissions()
   }, [handle])
 
-  // Process submissions to find all active dates and unique solved problems per date
   const activityData = useMemo(() => {
     const subsToUse = stats?.submissions || submissions;
     if (!subsToUse || subsToUse.length === 0) return { activeDates: [], problemsByDate: {}, allSolved: [] };
@@ -68,12 +67,10 @@ export default function Dashboard() {
       const isoDate = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
       const problemKey = `${sub.problem.contestId || 'gym'}-${sub.problem.index}`;
 
-      // Deduplicate for the "ALL" view
       if (!allSolvedMap.has(problemKey)) {
         allSolvedMap.set(problemKey, sub.problem);
       }
 
-      // Deduplicate per specific date
       if (!problemsByDate[isoDate]) {
         problemsByDate[isoDate] = new Map();
       }
@@ -82,7 +79,6 @@ export default function Dashboard() {
       }
     });
 
-    // Sort dates newest to oldest
     const activeDates = Object.keys(problemsByDate).sort((a, b) => b.localeCompare(a));
     const allSolved = Array.from(allSolvedMap.values());
 
@@ -100,7 +96,6 @@ export default function Dashboard() {
     ? solvedOnDate.slice(0, visibleCount)
     : solvedOnDate;
 
-  // Date format helpers
   const formatShortDate = (isoStr) => {
     const [y, m, day] = isoStr.split('-');
     return new Date(y, m - 1, day).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).toUpperCase();
@@ -156,7 +151,6 @@ export default function Dashboard() {
 
   return (
     <main className={styles.container}>
-      {/* Profile Header */}
       <div className={styles.profileHeader}>
         <div className={styles.profileLeft}>
           <img src={stats.userInfo.avatar} alt={handle} className={styles.avatar} />
@@ -179,7 +173,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Statistics Cards */}
       <div className={styles.statsGrid}>
         <div className={styles.statCard} style={{ cursor: 'pointer' }}>
           <div className={styles.statContent}>
@@ -201,7 +194,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Top Topics */}
       <div className={styles.section}>
         <h2 className={styles.sectionTitle}>All Topics ({Object.keys(stats.tagCount).length})</h2>
         <div className={styles.topicsList}>
@@ -220,7 +212,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Rating Distribution */}
       <div className={styles.section}>
         <h2 className={styles.sectionTitle}>Problems by Rating</h2>
         <div className={styles.chartContainer}>
@@ -260,7 +251,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Top Topics Distribution */}
       <div className={styles.section}>
         <h2 className={styles.sectionTitle}>Top Topics Distribution</h2>
         <div className={styles.chartContainer}>
@@ -296,7 +286,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Daily Activity Filter */}
       <div className={styles.section}>
         <div style={{ marginBottom: '24px' }}>
           <h2 className={styles.sectionTitle} style={{ marginBottom: '8px', borderBottom: 'none', paddingBottom: 0 }}>
@@ -410,7 +399,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Problems Modal */}
       {showModal && (
         <ProblemsList
           handle={handle}
@@ -420,7 +408,6 @@ export default function Dashboard() {
         />
       )}
 
-      {/* Rating Problems Local Modal */}
       {selectedRating && (
         <div className={styles.modalOverlay} onClick={() => setSelectedRating(null)}>
           <div className={styles.modalContent} onClick={e => e.stopPropagation()}>

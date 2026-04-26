@@ -7,7 +7,6 @@ import App from './App'
 import './index.css'
 import axios from 'axios'
 
-// Dynamically set the backend URL based on the environment
 axios.defaults.baseURL = import.meta.env.VITE_API_URL || ''
 
 createRoot(document.getElementById('root')).render(
