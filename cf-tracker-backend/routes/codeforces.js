@@ -21,8 +21,7 @@ router.get('/avatar', async (req, res) => {
   }
 })
 
-// GET /api/cf/user/:handle/problems-by-tag/:tag — get problems solved by specific tag
-// MUST come before /user/:handle to match properly
+
 router.get('/user/:handle/problems-by-tag/:tag', async (req, res, next) => {
   const { handle, tag } = req.params
   try {
@@ -66,8 +65,7 @@ router.get('/user/:handle/problems-by-tag/:tag', async (req, res, next) => {
   }
 })
 
-// GET /api/cf/user/:handle/problems-by-rating/:rating — get problems solved by specific rating
-// MUST come before /user/:handle to match properly
+
 router.get('/user/:handle/problems-by-rating/:rating', async (req, res, next) => {
   const { handle, rating } = req.params
   try {
@@ -111,7 +109,7 @@ router.get('/user/:handle/problems-by-rating/:rating', async (req, res, next) =>
   }
 })
 
-// GET /api/cf/problems — full problemset
+
 router.get('/problems', async (req, res, next) => {
   try {
     const response = await axios.get(`${CF_BASE}/problemset.problems`)
@@ -122,8 +120,7 @@ router.get('/problems', async (req, res, next) => {
   }
 })
 
-// GET /api/roadmap?topic=:topic[&handle=:handle] — get learning roadmap for a topic
-// If handle provided, excludes already-solved problems
+
 // Returns problems sorted by difficulty (rating) for structured learning
 router.get('/roadmap', async (req, res, next) => {
   const { topic, handle } = req.query
@@ -149,7 +146,7 @@ router.get('/roadmap', async (req, res, next) => {
         }
       } catch (err) {
         console.warn('Could not fetch user submissions for roadmap:', err.message)
-        // Continue without filtering if user fetch fails
+
       }
     }
 
@@ -177,8 +174,7 @@ router.get('/roadmap', async (req, res, next) => {
   }
 })
 
-// GET /api/cf/user/:handle — fetch + process all submissions
-// General route MUST come LAST, after specific routes
+
 router.get('/user/:handle', async (req, res) => {
   const { handle } = req.params
   try {
