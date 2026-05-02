@@ -33,7 +33,6 @@ app.use((err, req, res, next) => {
   }
 
   // Mongoose duplicate key error
-
   if (err.code === 11000) {
     return res.status(409).json({ message: 'Resource already exists' })
   }
